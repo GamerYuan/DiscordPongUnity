@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.furnyr.dissonity": {
+      "version": "https://github.com/Furnyr/Dissonity.git?path=/unity",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "09c8df3a392ba433713d8616cdcb422cbfa429d4"
+    },
     "com.unity.2d.animation": {
       "version": "9.1.0",
       "depth": 1,
@@ -265,6 +272,13 @@
         "com.unity.modules.jsonserialize": "1.0.0"
       },
       "url": "https://packages.unity.com"
+    },
+    "io.colyseus.sdk": {
+      "version": "https://github.com/colyseus/colyseus-unity3d.git#upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "1ddb5197489c4426c847f92336221776e084d9bc"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

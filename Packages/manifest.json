@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.furnyr.dissonity": "https://github.com/Furnyr/Dissonity.git?path=/unity",
     "com.unity.collab-proxy": "2.4.3",
     "com.unity.feature.2d": "2.0.0",
     "com.unity.ide.rider": "3.0.28",
@@ -10,6 +11,7 @@
     "com.unity.timeline": "1.7.6",
     "com.unity.ugui": "1.0.0",
     "com.unity.visualscripting": "1.9.2",
+    "io.colyseus.sdk": "https://github.com/colyseus/colyseus-unity3d.git#upm",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
