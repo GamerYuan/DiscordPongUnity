@@ -38,7 +38,7 @@ namespace Pong.Participants
             player.OnYChange((y, _) =>
             {
                 Debug.Log($"[PlayerClient] Player {participantID} Moved!");
-                targetPosition = new Vector2(startingX, y);
+                targetPosition = new Vector2(startingX, y / 10);
                 isMoving = true;
             });
 
@@ -64,12 +64,12 @@ namespace Pong.Participants
         {
             if (Input.GetKey(KeyCode.W))
             {
-                networkManager.PlayerPosition(transform.position.y + speed * Time.fixedDeltaTime);
+                networkManager.PlayerPosition(1);
             }
 
             if (Input.GetKey(KeyCode.S))
             {
-                networkManager.PlayerPosition(transform.position.y - speed * Time.fixedDeltaTime);
+                networkManager.PlayerPosition(-1);
             }
         }
     }
