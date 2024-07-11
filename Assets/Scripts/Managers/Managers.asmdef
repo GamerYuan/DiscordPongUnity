@@ -1,0 +1,19 @@
+{
+    "name": "Pong.Managers",
+    "rootNamespace": "Pong.Managers",
+    "references": [
+        "ColyseusSDK",
+        "Pong.Networking",
+        "Pong.Participants",
+        "Pong.ClientSchema"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

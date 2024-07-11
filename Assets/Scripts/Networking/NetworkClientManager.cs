@@ -1,5 +1,6 @@
 using Colyseus;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -35,7 +36,19 @@ namespace Pong.Networking
             string instanceId = await GetSDKInstanceId();
             string userId = await GetUserId();
 #endif
-            gameRoom = await client.JoinOrCreate<GameState>("game", new Dictionary<string, object> { { "instanceId", instanceId }, { "userId", userId } });
+            var rooms = await client.GetAvailableRooms("game");
+            if (rooms.Any(x => x.roomId == instanceId))
+            {
+                Debug.Log($"[NetworkClientManager] Joining Existing Room with ID: {instanceId}");
+                gameRoom = await client.JoinById<GameState>(instanceId, new Dictionary<string, object> { { "instanceId", instanceId }, { "userId", userId } });
+            }
+            else
+            {
+                Debug.Log($"[NetworkClientManager] Creating New Room with ID: {instanceId}");
+                gameRoom = await client.Create<GameState>("game", new Dictionary<string, object> { { "instanceId", instanceId }, { "userId", userId } });
+            }
+
+            //gameRoom = await client.JoinOrCreate<GameState>("game", new Dictionary<string, object> { { "instanceId", instanceId }, { "userId", userId } });
         }
 
         public void PlayerPosition(float yPosition)
