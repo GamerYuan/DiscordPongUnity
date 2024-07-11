@@ -2,12 +2,14 @@ using Pong.Networking;
 using System.Collections;
 using UnityEngine;
 
-namespace Pong.PlayerControls
+namespace Pong.Participants
 {
     [RequireComponent(typeof(BoxCollider2D))]
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerMovement : Participant
     {
         [SerializeField] private float speed;
+        [SerializeField] private KeyCode upKey;
+        [SerializeField] private KeyCode downKey;
 
         private NetworkClientManager networkManager;
 
@@ -63,12 +65,12 @@ namespace Pong.PlayerControls
         // Update is called once per frame
         private void Update()
         {
-            if (Input.GetKey(KeyCode.W))
+            if (Input.GetKey(upKey))
             {
                 networkManager.PlayerPosition(transform.position.y + speed * Time.deltaTime);
             }
 
-            if (Input.GetKey(KeyCode.S))
+            if (Input.GetKey(downKey))
             {
                 networkManager.PlayerPosition(transform.position.y - speed * Time.deltaTime);
             }

@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
+#if !UNITY_EDITOR
+using static Dissonity.Api;
+#endif
+
 namespace Pong.Networking
 {
     public class NetworkClientManager : MonoBehaviour
@@ -26,8 +30,8 @@ namespace Pong.Networking
         {
 #if UNITY_EDITOR
             string instanceId = "1";
-            string userId = "1";
-#elif UNITY_WEBGL
+            string userId = Random.Range(0, 500).ToString();
+#else
             string instanceId = await GetSDKInstanceId();
             string userId = await GetUserId();
 #endif

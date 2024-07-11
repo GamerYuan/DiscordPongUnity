@@ -1,6 +1,6 @@
 {
-    "name": "Pong.Player",
-    "rootNamespace": "Pong.Player",
+    "name": "Pong.Participants",
+    "rootNamespace": "Pong.Participants",
     "references": [
         "Pong.Networking",
         "ColyseusSDK",
