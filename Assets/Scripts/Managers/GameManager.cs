@@ -1,3 +1,4 @@
+using Pong.ClientObjects;
 using Pong.Networking;
 using Pong.Participants;
 using System.Collections.Generic;
@@ -16,7 +17,10 @@ namespace Pong.Managers
         [SerializeField] private Transform rightSpawnPoint;
 
         [Header("Prefabs")]
-        [SerializeField] private PlayerClient playerController;
+        [SerializeField] private PlayerClient playerClient;
+        [SerializeField] private BallClient ballClient;
+
+        internal readonly Dictionary<string, string> discordUserMap = new();
 
         private readonly Dictionary<string, ParticipantClient> participantMap = new();
         private int playerNumber = -1;
@@ -37,6 +41,7 @@ namespace Pong.Managers
             {
                 Debug.Log("[GameManager] New Participant Joined!");
                 HandleParticipants(x, y);
+                if (networkManager.GameRoom.State.participants.Count >= 2) SpawnBall();
             });
         }
 
@@ -51,7 +56,7 @@ namespace Pong.Managers
             {
                 SpawnPlayer(playerNumber == 0 ? 1 : 0, out PlayerClient otherPlayer);
                 otherPlayer.Init(participantID, networkManager);
-                participantMap.Add(participantID, playerController);
+                participantMap.Add(participantID, playerClient);
             }
         }
 
@@ -81,9 +86,15 @@ namespace Pong.Managers
         {
             Debug.Log($"[GameManager] Spawning Player {playerNumber + 1}");
 
-            if (playerNumber == 0) player = Instantiate(playerController, leftSpawnPoint.position, Quaternion.identity);
-            else if (playerNumber == 1) player = Instantiate(playerController, rightSpawnPoint.position, Quaternion.identity);
+            if (playerNumber == 0) player = Instantiate(playerClient, leftSpawnPoint.position, Quaternion.identity);
+            else if (playerNumber == 1) player = Instantiate(playerClient, rightSpawnPoint.position, Quaternion.identity);
             else player = null;
+        }
+
+        private void SpawnBall()
+        {
+            var ball = Instantiate(ballClient, Vector3.zero, Quaternion.identity);
+            ball.Init(networkManager);
         }
     }
 }

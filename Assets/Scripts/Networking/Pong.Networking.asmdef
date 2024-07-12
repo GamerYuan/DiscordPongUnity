@@ -4,7 +4,8 @@
     "references": [
         "ColyseusSDK",
         "Furnyr.Dissonity",
-        "Pong.ClientSchema"
+        "Pong.ClientSchema",
+        "CandyCoded.env"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

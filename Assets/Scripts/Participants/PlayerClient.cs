@@ -7,7 +7,7 @@ namespace Pong.Participants
     [RequireComponent(typeof(BoxCollider2D))]
     public class PlayerClient : ParticipantClient
     {
-        [SerializeField] private float speed;
+        private float speed = 1.8f;
 
         private bool isMoving = false;
         private Vector2 targetPosition;
@@ -38,26 +38,29 @@ namespace Pong.Participants
             player.OnYChange((y, _) =>
             {
                 Debug.Log($"[PlayerClient] Player {participantID} Moved!");
-                targetPosition = new Vector2(startingX, y / 10);
+                targetPosition = new Vector2(startingX, y / 100);
                 isMoving = true;
             });
 
             Debug.Log("[PlayerClient] Player Initialized with ID: " + participantID);
         }
 
-        // Update is called once per frame
-        private void FixedUpdate()
+        private void Update()
         {
-            if (participantID == networkManager.GameRoom.SessionId) HandleInput();
-
             if (isMoving && (Vector2)transform.position != targetPosition)
             {
-                transform.position = targetPosition;
+                transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
             }
             else
             {
                 isMoving = false;
             }
+        }
+
+        // Update is called once per frame
+        private void FixedUpdate()
+        {
+            if (participantID == networkManager.GameRoom.SessionId) HandleInput();
         }
 
         private void HandleInput()

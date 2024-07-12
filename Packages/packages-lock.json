@@ -287,6 +287,13 @@
       "dependencies": {},
       "hash": "1ddb5197489c4426c847f92336221776e084d9bc"
     },
+    "xyz.candycoded.env": {
+      "version": "https://github.com/CandyCoded/env.git#v1.1.2",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "aefda8e07418cb6b9671284ba667cc690655792a"
+    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,
